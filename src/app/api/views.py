@@ -52,6 +52,15 @@ class GetChangesByVersionView(ListAPIView):
     def get_queryset(self):
         version = self.kwargs['version']
         return Change.objects.filter(build__version_number=version)
+    
+class GetChangesByDatesView(ListAPIView):
+    serializer_class = GetAllChangesSerializer
+    pagination_class = None
+
+    def get_queryset(self):
+        date_end = self.kwargs['date_end']
+        date_start = self.kwargs['date_start']
+        return BuildVersion.objects.filter(date_created__range=[date_end, date_start])
 
 
 class GetAllChangesView(ListAPIView):
