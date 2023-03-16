@@ -47,7 +47,6 @@ class PostVersionedChangeView(GenericAPIView):
 
 class GetChangesByVersionView(ListAPIView):
     serializer_class = GetChangeSerializer
-    pagination_class = None
 
     def get_queryset(self):
         version = self.kwargs['version']
@@ -55,7 +54,6 @@ class GetChangesByVersionView(ListAPIView):
     
 class GetChangesByDatesView(ListAPIView):
     serializer_class = GetAllChangesSerializer
-    pagination_class = None
 
     def get_queryset(self):
         date_end = self.kwargs['date_end']
